@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "project": "Calculus Explorer 3D",
+  "release": {
+    "version": "1.0.0",
+    "name": "AP Calculus AB Interactive Visualizer & Mastery Engine",
+    "license": "MIT",
+    "releasedAt": "2026-11-06T00:58:42Z"
+  },
+  "session": {
+    "id": "ses_e51c32a5cffeZTqDPNfzvEjIXW",
+    "startedAt": "2026-11-06T00:23:04Z",
+    "capturedAt": "2026-11-06T00:58:42Z",
+    "elapsedSeconds": 2138,
+    "elapsed": "35m 38s",
+    "note": "Wall-clock build time from the first tool call to this provisional capture. Updated after tests and deployment."
+  },
+  "model": {
+    "name": "DeepSeek V4.1 Flash",
+    "id": "deepseek-v4.1-flash",
+    "provider": "opencode-go"
+  },
+  "usage": {
+    "inputTokens": 279356,
+    "outputTokens": 160120,
+    "reasoningTokens": 69028,
+    "cacheReadTokens": 17357568,
+    "cacheWriteTokens": 2175,
+    "totalTokens": 17868247,
+    "costUSD": 0,
+    "note": "Read from the OpenCode session database (session_v2). totalTokens is the sum of all five counters, including repeated prompt context read from cache; cache reads dominate the figure. costUSD is 0 on the flat-rate plan."
+  },
+  "artifacts": {
+    "sourceFiles": [
+      "index.html",
+      "style.css",
+      "src/main.js",
+      "src/data/curriculum.js",
+      "src/core/math.js",
+      "src/core/mastery.js",
+      "src/core/quiz.js",
+      "src/visuals/stage.js",
+      "src/visuals/common.js",
+      "src/visuals/unit1.js",
+      "src/visuals/unit2.js",
+      "src/visuals/unit3.js",
+      "src/visuals/unit4.js",
+      "src/visuals/unit5.js",
+      "src/visuals/unit6.js",
+      "src/visuals/unit7.js",
+      "src/visuals/unit8.js"
+    ],
+    "content": {
+      "units": 8,
+      "workedExamples": 40,
+      "questions": 96,
+      "multipleChoice": 80,
+      "freeResponse": 16
+    },
+    "verification": {
+      "curriculumTests": 16,
+      "staticTests": 0,
+      "browserChecks": 0,
+      "selftestChecks": 0
+    }
+  },
+  "verification": {
+    "method": "Node built-in test runner + dependency-free headless Chrome over the DevTools Protocol; one Chrome instance with --use-mock-keychain and a throwaway profile",
+    "checks": [
+      "Eight units, 96 questions, 40 worked examples, unique IDs, valid answers",
+      "All eight 3D scenes build and render live readouts and narration",
+      "Adaptive queue excludes mastered questions and persists across reloads",
+      "Practice correct/wrong flows, localStorage, export, and deep links",
+      "390 px mobile layout has no horizontal overflow",
+      "In-page self-test passes",
+      "Zero console errors"
+    ],
+    "consoleErrors": 0
+  },
+  "deployment": {
+    "repository": "https://github.com/somphol/calculus-explorer-3d",
+    "pages": "https://somphol.github.io/calculus-explorer-3d/",
+    "host": "GitHub Pages",
+    "branch": "main",
+    "path": "/"
+  },
+  "credits": {
+    "tool": "OpenCode",
+    "toolURL": "https://opencode.ai",
+    "model": "DeepSeek V4.1 Flash",
+    "modelID": "opencode-go/deepseek-v4.1-flash",
+    "visualization": "Three.js 0.169.0 (MIT)",
+    "author": "Somphol Boonjing"
+  }
+}

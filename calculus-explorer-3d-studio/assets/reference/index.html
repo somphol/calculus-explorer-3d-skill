@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#050b14">
+  <title>Calculus Explorer 3D — AP Calculus AB Visualizer & Mastery Engine</title>
+  <meta name="description" content="An interactive 3D AP Calculus AB visualizer: eight Khan Academy units, live WebGL models, 40 worked examples, and an adaptive mastery quiz engine.">
+  <meta name="author" content="Somphol Boonjing">
+  <link rel="canonical" href="https://somphol.github.io/calculus-explorer-3d/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Calculus Explorer 3D — AP Calculus AB Visualizer">
+  <meta property="og:description" content="Eight units, eight live 3D models, 96 adaptive questions. See the calculus, don't just solve it.">
+  <meta property="og:url" content="https://somphol.github.io/calculus-explorer-3d/">
+  <meta property="og:image" content="https://somphol.github.io/calculus-explorer-3d/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the studio</a>
+
+  <div class="boot" id="boot" role="status" aria-live="polite">
+    <div class="boot-mark" aria-hidden="true">∫</div>
+    <p>Lathing surfaces, loading the eight units…</p>
+    <div class="boot-bar"><span></span></div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#unit-1" id="brand" aria-label="Calculus Explorer 3D home">
+      <span class="brand-mark" aria-hidden="true">∫</span>
+      <span class="brand-text">
+        <strong>Calculus Explorer</strong>
+        <small>3D · AP CALCULUS AB</small>
+      </span>
+    </a>
+
+    <nav class="mode-tabs" aria-label="Workspace mode">
+      <button class="mode-tab is-active" id="tab-explore" type="button" aria-pressed="true">Explore</button>
+      <button class="mode-tab" id="tab-practice" type="button" aria-pressed="false">Mastery</button>
+    </nav>
+
+    <div class="topbar-actions">
+      <div class="mastery-mini" id="mastery-mini" title="Overall mastery" style="--p:0">
+        <span id="overall-percent">0%</span>
+      </div>
+      <button class="icon-btn" id="btn-shortcuts" type="button" title="Keyboard shortcuts" aria-label="Keyboard shortcuts">?</button>
+      <button class="icon-btn" id="btn-settings" type="button" title="Settings and credits" aria-label="Settings and credits">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V21h-4v-.08A1.7 1.7 0 0 0 8.94 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.57 15 1.7 1.7 0 0 0 3 14H3v-4h.08A1.7 1.7 0 0 0 4.6 8.94a1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.57 1.7 1.7 0 0 0 10 3V3h4v.08A1.7 1.7 0 0 0 15.06 4.6a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.43 9 1.7 1.7 0 0 0 21 10h.08v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="explore-shell" id="explore-view" aria-label="Calculus studio">
+      <aside class="unit-rail" aria-label="AP Calculus AB units">
+        <div class="rail-head">
+          <span>Curriculum</span>
+          <span class="rail-count">8 units</span>
+        </div>
+        <div class="unit-list" id="unit-list"></div>
+        <div class="rail-foot">
+          <p>Aligned to the Khan Academy AP&nbsp;Calculus&nbsp;AB framework.</p>
+          <div class="rail-credit">WebGL · Three.js r169</div>
+        </div>
+      </aside>
+
+      <section class="workspace" aria-label="Visualizer">
+        <div class="stage-shell" id="stage-shell">
+          <canvas id="scene" aria-label="Interactive 3D visualization of the selected calculus concept" tabindex="0"></canvas>
+          <div class="stage-vignette" aria-hidden="true"></div>
+
+          <div class="stage-top">
+            <div class="unit-eyebrow">
+              <span id="unit-code">UNIT 01</span>
+              <span class="eyebrow-dot" aria-hidden="true"></span>
+              <span id="unit-weight">10–12% of the exam</span>
+            </div>
+            <h1 id="unit-title">Limits &amp; Continuity</h1>
+            <p id="unit-tagline">Approach, don’t arrive.</p>
+          </div>
+
+          <div class="stage-actions">
+            <button class="stage-btn" id="btn-reset-view" type="button" title="Reset camera" aria-label="Reset camera">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10a8 8 0 1 1 2.34 6.36"/><path d="M4 4v6h6"/></svg>
+            </button>
+            <button class="stage-btn" id="btn-focus" type="button" title="Focus mode" aria-label="Toggle focus mode" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+            </button>
+          </div>
+
+          <div class="stage-readouts" id="readouts" aria-live="polite"></div>
+
+          <div class="stage-foot">
+            <span id="stage-hint">Drag to orbit · scroll to zoom · right-drag to pan</span>
+            <span class="stage-webgl">THREE.JS · WEBGL</span>
+          </div>
+
+          <div class="webgl-error" id="webgl-error" hidden>
+            <strong>WebGL is unavailable.</strong>
+            <p>The lessons and mastery engine still work, but the 3D views need a browser with WebGL enabled.</p>
+          </div>
+        </div>
+
+        <div class="control-dock">
+          <div class="dock-head">
+            <span class="dock-pulse" aria-hidden="true"></span>
+            <span id="dock-mode">Limit convergence</span>
+            <span class="dock-note">live parameters</span>
+          </div>
+          <div class="controls" id="controls"></div>
+        </div>
+      </section>
+
+      <aside class="inspector" aria-label="Narration and worked examples">
+        <div class="inspector-tabs" role="tablist" aria-label="Inspector">
+          <button class="ins-tab is-active" id="tab-narration" type="button" role="tab" aria-selected="true">Narration</button>
+          <button class="ins-tab" id="tab-examples" type="button" role="tab" aria-selected="false">Worked examples <span id="example-count">5</span></button>
+        </div>
+
+        <div class="inspector-pane" id="narration-pane" role="tabpanel" aria-labelledby="tab-narration">
+          <div class="theorem-card">
+            <span class="eyebrow">GOVERNING THEOREM</span>
+            <h2 id="theorem-name">The Intermediate Value Theorem</h2>
+            <p id="theorem-statement"></p>
+          </div>
+
+          <div class="live-narration">
+            <div class="live-head">
+              <span class="live-status" id="live-status">live readout</span>
+              <h3 id="live-title">—</h3>
+            </div>
+            <p id="live-lead"></p>
+            <div class="live-formula" id="live-formula"></div>
+            <p class="live-note" id="live-note"></p>
+          </div>
+
+          <div class="inspector-section">
+            <h3 class="section-title">Formula shelf</h3>
+            <div class="formula-list" id="formula-list"></div>
+          </div>
+
+          <div class="inspector-section">
+            <h3 class="section-title">What this unit covers</h3>
+            <div class="concept-list" id="concept-list"></div>
+          </div>
+
+          <button class="practice-cta" id="btn-practice-unit" type="button">
+            Practice this unit
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        <div class="inspector-pane" id="examples-pane" role="tabpanel" aria-labelledby="tab-examples" hidden>
+          <p class="pane-intro">Five fully worked examples, with the reasoning shown step by step. Each one names the 3D view that makes it visible.</p>
+          <div class="example-list" id="example-list"></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="practice-shell" id="practice-view" aria-label="Adaptive mastery engine" hidden>
+      <div class="practice-hero">
+        <div class="practice-hero-copy">
+          <span class="eyebrow">ADAPTIVE MASTERY ENGINE</span>
+          <h1>Practice only what you haven’t mastered.</h1>
+          <p>Answer correctly once and the question leaves the queue. The engine keeps filtering until the unit is 100% mastered — no busywork, no skipped concepts.</p>
+        </div>
+        <div class="overall-card">
+          <div class="mastery-ring mastery-ring-lg" id="practice-ring" style="--p:0"><span id="practice-percent">0%</span></div>
+          <div class="overall-copy">
+            <strong id="practice-count">0 / 96 mastered</strong>
+            <span>across all eight units</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="practice-grid">
+        <aside class="mastery-panel" aria-label="Unit mastery map">
+          <div class="panel-head">
+            <h2>Unit map</h2>
+            <span>click to practice</span>
+          </div>
+          <div class="mastery-list" id="mastery-list"></div>
+          <button class="ghost danger" id="btn-reset-progress" type="button">Reset all progress</button>
+        </aside>
+
+        <section class="quiz-panel" id="quiz-panel" aria-label="Practice quiz">
+          <div class="quiz-empty" id="quiz-empty">
+            <div class="quiz-empty-mark" aria-hidden="true">∫</div>
+            <h2>Choose a unit to begin</h2>
+            <p>The adaptive queue removes every question you have already mastered. A missed question returns later in the same session.</p>
+            <button class="primary" id="btn-start-current" type="button">Start Unit 1</button>
+          </div>
+
+          <div class="quiz-active" id="quiz-active" hidden>
+            <header class="quiz-head">
+              <div class="quiz-head-copy">
+                <span class="eyebrow" id="quiz-unit">UNIT 01 · LIMITS</span>
+                <span class="quiz-topic" id="quiz-topic">Algebraic limits</span>
+              </div>
+              <div class="quiz-meta">
+                <span class="difficulty" id="quiz-difficulty" aria-label="Difficulty">●○○</span>
+                <span id="quiz-remaining">12 unmastered</span>
+              </div>
+            </header>
+            <div class="quiz-progress" role="progressbar" aria-label="Unit mastery" aria-valuemin="0" aria-valuemax="100" id="quiz-progress"><span id="quiz-progress-bar"></span></div>
+
+            <div class="quiz-prompt">
+              <div class="quiz-formula" id="quiz-formula"></div>
+              <h2 id="quiz-question">Question</h2>
+              <div class="quiz-choices" id="quiz-choices"></div>
+              <form class="frq-form" id="frq-form" hidden>
+                <label for="frq-input">Your numeric answer</label>
+                <div class="frq-row">
+                  <input id="frq-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="e.g. 32/5 or 20.11">
+                  <span id="frq-unit" class="frq-unit"></span>
+                </div>
+                <p class="frq-note">Fractions, decimals, and simple π multiples are accepted.</p>
+              </form>
+            </div>
+
+            <div class="quiz-feedback" id="quiz-feedback" hidden aria-live="polite"></div>
+
+            <div class="quiz-actions">
+              <button class="ghost" id="btn-hint" type="button">Hint</button>
+              <button class="ghost" id="btn-skip" type="button">Skip for now</button>
+              <button class="primary" id="btn-check" type="button">Check answer</button>
+              <button class="primary" id="btn-next" type="button" hidden>Next question</button>
+            </div>
+          </div>
+
+          <div class="quiz-complete" id="quiz-complete" hidden>
+            <div class="complete-burst" aria-hidden="true">100</div>
+            <span class="eyebrow">UNIT MASTERED</span>
+            <h2 id="complete-title">Limits &amp; Continuity</h2>
+            <p id="complete-copy">Every question in this unit has been answered correctly at least once. The queue is empty.</p>
+            <div class="complete-actions">
+              <button class="primary" id="btn-next-unit" type="button">Next unit →</button>
+              <button class="ghost" id="btn-review" type="button">Review all questions</button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="session-panel" aria-label="Session statistics">
+          <div class="panel-head"><h2>This session</h2><span id="session-label">ready</span></div>
+          <div class="stat-grid">
+            <div class="stat"><strong id="stat-streak">0</strong><span>streak</span></div>
+            <div class="stat"><strong id="stat-correct">0</strong><span>correct</span></div>
+            <div class="stat"><strong id="stat-answered">0</strong><span>answered</span></div>
+            <div class="stat"><strong id="stat-accuracy">—</strong><span>accuracy</span></div>
+          </div>
+          <div class="session-unit" id="session-unit">
+            <span class="eyebrow">CURRENT UNIT</span>
+            <strong id="session-unit-title">Not started</strong>
+            <div class="mini-track"><span id="session-unit-bar"></span></div>
+            <small id="session-unit-note">Pick a unit from the map.</small>
+          </div>
+          <div class="session-tip">
+            <span aria-hidden="true">◆</span>
+            <p id="session-tip">Mastery is stored in this browser with <code>localStorage</code>. Nothing is sent anywhere.</p>
+          </div>
+          <button class="ghost" id="btn-export" type="button">Export mastery JSON</button>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>Calculus Explorer 3D <span class="version">v1.0.0</span></span>
+    <span class="footer-dot" aria-hidden="true">·</span>
+    <span>Built with <a href="https://opencode.ai" target="_blank" rel="noopener">OpenCode</a> + DeepSeek V4.1 Flash</span>
+    <span class="footer-dot" aria-hidden="true">·</span>
+    <a href="https://github.com/somphol/calculus-explorer-3d" target="_blank" rel="noopener">Source &amp; documentation</a>
+    <span class="footer-spacer"></span>
+    <span>MIT · no accounts · no tracking</span>
+  </footer>
+
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+  <dialog class="modal" id="settings-dialog" aria-labelledby="settings-title">
+    <div class="modal-head">
+      <div>
+        <span class="eyebrow">STUDIO SETTINGS</span>
+        <h2 id="settings-title">Make it yours</h2>
+      </div>
+      <button class="icon-btn" type="button" data-close-dialog="settings-dialog" aria-label="Close settings">×</button>
+    </div>
+    <div class="modal-body">
+      <label class="setting-row">
+        <span><strong>Interface sounds</strong><small>Short synthesized chimes on correct answers. No audio files.</small></span>
+        <input type="checkbox" id="setting-sound" checked>
+      </label>
+      <label class="setting-row">
+        <span><strong>Reduce motion</strong><small>Stops autonomous ring and camera motion, keeping every control usable.</small></span>
+        <input type="checkbox" id="setting-motion">
+      </label>
+      <div class="modal-divider"></div>
+      <div class="setting-actions">
+        <button class="ghost" id="btn-export-settings" type="button">Export mastery</button>
+        <label class="ghost file-button" for="import-file">Import mastery</label>
+        <input id="import-file" type="file" accept="application/json" hidden>
+        <button class="ghost danger" id="btn-reset-settings" type="button">Reset progress</button>
+      </div>
+      <div class="about-card">
+        <span class="eyebrow">ABOUT THIS RELEASE</span>
+        <p><strong>Calculus Explorer 3D v1.0.0</strong> is a static, offline-capable AP Calculus AB studio. It has no backend, no account system, no analytics, and no third-party fonts.</p>
+        <p>Curriculum structure mirrors Khan Academy’s AP Calculus AB units. Three.js r169 is pinned by import map. Mastery stays in your browser.</p>
+        <p class="credit-line">Built with <a href="https://opencode.ai" target="_blank" rel="noopener">OpenCode</a> and the <strong>DeepSeek V4.1 Flash</strong> model. Source, tests, and reproduction notes are in the <a href="https://github.com/somphol/calculus-explorer-3d" target="_blank" rel="noopener">repository</a>.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="modal modal-small" id="shortcuts-dialog" aria-labelledby="shortcuts-title">
+    <div class="modal-head">
+      <div>
+        <span class="eyebrow">KEYBOARD</span>
+        <h2 id="shortcuts-title">Move faster</h2>
+      </div>
+      <button class="icon-btn" type="button" data-close-dialog="shortcuts-dialog" aria-label="Close shortcuts">×</button>
+    </div>
+    <div class="modal-body">
+      <dl class="shortcut-list">
+        <div><dt><kbd>1</kbd>–<kbd>8</kbd></dt><dd>Switch unit</dd></div>
+        <div><dt><kbd>E</kbd> / <kbd>P</kbd></dt><dd>Explore / Mastery</dd></div>
+        <div><dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Previous / next unit</dd></div>
+        <div><dt><kbd>R</kbd></dt><dd>Reset the camera</dd></div>
+        <div><dt><kbd>F</kbd></dt><dd>Toggle focus mode</dd></div>
+        <div><dt><kbd>?</kbd></dt><dd>Open this panel</dd></div>
+        <div><dt><kbd>Esc</kbd></dt><dd>Close panels / leave focus</dd></div>
+      </dl>
+    </div>
+  </dialog>
+
+  <div class="selftest" id="selftest" hidden>
+    <div class="selftest-card" role="dialog" aria-modal="true" aria-labelledby="selftest-title">
+      <div class="selftest-head">
+        <div>
+          <span class="eyebrow">BUILT-IN VERIFICATION</span>
+          <h2 id="selftest-title">Self-test</h2>
+        </div>
+        <span class="selftest-score" id="selftest-score">—</span>
+      </div>
+      <ol class="selftest-list" id="selftest-list"></ol>
+      <p class="selftest-summary" id="selftest-summary">Running…</p>
+      <button class="primary" id="btn-selftest-close" type="button">Back to the studio</button>
+    </div>
+  </div>
+
+  <noscript>
+    <div class="noscript">This studio needs JavaScript for the 3D views and mastery engine. The content is otherwise static and privacy-respecting.</div>
+  </noscript>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

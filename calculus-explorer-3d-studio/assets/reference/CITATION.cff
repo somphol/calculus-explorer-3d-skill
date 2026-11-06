@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+title: "Calculus Explorer 3D: AP Calculus AB Interactive Visualizer & Mastery Engine"
+message: "If you use this project in teaching or research, cite the software release and the repository URL."
+type: software
+authors:
+  - family-names: "Boonjing"
+    given-names: "Somphol"
+repository-code: "https://github.com/somphol/calculus-explorer-3d"
+url: "https://somphol.github.io/calculus-explorer-3d/"
+license: MIT
+version: 1.0.0
+date-released: 2026-11-06
+keywords:
+  - AP Calculus AB
+  - calculus
+  - education
+  - WebGL
+  - Three.js
+  - adaptive learning
+abstract: >-
+  A static, single-page AP Calculus AB studio with eight procedural Three.js
+  visualizations, forty worked examples, ninety-six auto-gradable questions,
+  and a local adaptive mastery engine.
