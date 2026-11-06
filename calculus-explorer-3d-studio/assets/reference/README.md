@@ -118,6 +118,12 @@ git push origin main
 
 See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for the API recipe and the post-deploy live test.
 
+## Rebuild kit
+
+The working method is packaged as an OpenCode skill, including the full reference source, a scaffold, the verification harness, the build log, and every pitfall that cost time:
+
+**[Calculus Explorer 3D Studio →](https://github.com/somphol/calculus-explorer-3d-skill)** · [live catalog](https://somphol.github.io/calculus-explorer-3d-skill/)
+
 ## Credits and provenance
 
 - **Built with** [OpenCode](https://opencode.ai) and the **DeepSeek V4.1 Flash** model (`opencode-go/deepseek-v4.1-flash`).

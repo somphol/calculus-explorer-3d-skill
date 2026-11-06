@@ -112,6 +112,10 @@ node scripts/sync-index.mjs
 
 The version is a SHA-256 content hash, so clients refresh.
 
+## Reference build
+
+The shipped reference took **57m 6s** of wall-clock time in one OpenCode session with **41,484,054 total tokens** (including 40,856,064 repeated cache-read tokens) on the flat-rate plan. Those are measured values from the OpenCode session database, not estimates. See `calculus-explorer-3d-studio/assets/reference/state.json`. Measure your own session; do not copy the numbers.
+
 ## What is intentionally not here
 
 - No Khan Academy videos, text, exercises, or assets. The unit structure is public; all content is original.

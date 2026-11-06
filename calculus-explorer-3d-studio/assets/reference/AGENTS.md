@@ -79,6 +79,7 @@ No build. Three source layers:
 - Repository: <https://github.com/somphol/calculus-explorer-3d>
 - Local checkout: `~/Projects/calculus-explorer-3d`
 - Build provenance and token totals: [state.json](state.json)
+- Reusable skill / scaffold: <https://github.com/somphol/calculus-explorer-3d-skill>
 - Credits: OpenCode + DeepSeek V4.1 Flash (`opencode-go/deepseek-v4.1-flash`), Three.js r169 (MIT).
 
 Update this file in the same push as any change that makes it stale. Do not record secrets, tokens, credentials, or personal data.

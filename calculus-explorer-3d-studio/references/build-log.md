@@ -9,9 +9,21 @@
 - Starting point: empty `~/Projects/calculus-explorer-3d`
 - Release: v1.0.0, MIT, GitHub Pages
 
-The measured wall-clock time and token counters are in the shipped `state.json` and in the skill
-repository. They were read from `session_v2` in `~/.local/share/opencode/opencode.db`, not estimated.
-Cache reads dominate the token total; they are repeated prompt context, not unique content.
+Measured from `session_v2` in `~/.local/share/opencode/opencode.db` at capture, not estimated:
+
+| Counter | Value |
+| --- | --- |
+| Wall-clock elapsed | 57m 6s |
+| Input tokens | 352,417 |
+| Output tokens | 191,161 |
+| Reasoning tokens | 82,237 |
+| Cache-read tokens | 40,856,064 |
+| Cache-write tokens | 2,175 |
+| Total (sum of five counters) | 41,484,054 |
+| Provider cost | $0 (flat-rate plan) |
+
+Cache reads dominate the total; they are repeated prompt context, not unique content. The full record
+is in `assets/reference/state.json`. Your session will differ; measure it, do not copy these numbers.
 
 ## Sequence that worked
 
