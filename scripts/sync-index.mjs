@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const NAME = "calculus-explorer-3d-studio";
 const DIR = join(ROOT, NAME);
-const SKIP = new Set([".git", ".DS_Store", "node_modules", "dist", "shots"]);
+const SKIP = new Set([".git", ".github", ".DS_Store", "node_modules", "dist", "shots"]);
 
 function walk(dir, base = dir) {
   const out = [];
