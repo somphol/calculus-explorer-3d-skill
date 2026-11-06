@@ -224,7 +224,9 @@ test("documentation avoids placeholders and contains the release counts", () => 
 });
 
 test("GitHub workflow verifies the project without deploying over Pages", () => {
-  const workflow = read(".github/workflows/ci.yml");
+  const workflow = existsSync(join(ROOT, ".github/workflows/ci.yml"))
+    ? read(".github/workflows/ci.yml")
+    : read("ci.yml");
   assert.match(workflow, /node --test tests\/curriculum\.test\.mjs/);
   assert.match(workflow, /node --test tests\/static\.test\.mjs/);
   assert.doesNotMatch(workflow, /pages deploy|actions\/deploy-pages|gh-pages/);

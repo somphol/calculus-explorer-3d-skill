@@ -3,7 +3,7 @@
   "skills": [
     {
       "name": "calculus-explorer-3d-studio",
-      "version": "7d01cff009ef",
+      "version": "97218a5ccf70",
       "description": "Build and release a static, eight-unit AP Calculus AB Three.js studio with procedural visualizations, 40 worked examples, a 96-question adaptive mastery engine, three verification layers and GitHub Pages. Use for calculus/STEM visualizers, not for a single chart or a backend LMS.",
       "license": "MIT",
       "files": [
@@ -29,6 +29,7 @@
         "assets/reference/assets/og.png",
         "assets/reference/assets/studio.png",
         "assets/reference/assets/unit-grid.png",
+        "assets/reference/ci.yml",
         "assets/reference/docs/ACCESSIBILITY.md",
         "assets/reference/docs/ARCHITECTURE.md",
         "assets/reference/docs/CURRICULUM.md",
