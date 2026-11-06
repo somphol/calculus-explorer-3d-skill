@@ -5,14 +5,14 @@
     "version": "1.0.0",
     "name": "AP Calculus AB Interactive Visualizer & Mastery Engine",
     "license": "MIT",
-    "releasedAt": "2026-11-06T01:20:10Z"
+    "releasedAt": "2026-11-06T01:22:32Z"
   },
   "session": {
     "id": "ses_e51c32a5cffeZTqDPNfzvEjIXW",
     "startedAt": "2026-11-06T00:23:04Z",
-    "capturedAt": "2026-11-06T01:20:10Z",
-    "elapsedSeconds": 3426,
-    "elapsed": "57m 6s",
+    "capturedAt": "2026-11-06T01:22:32Z",
+    "elapsedSeconds": 3568,
+    "elapsed": "59m 28s",
     "note": "Wall-clock build time from the first tool call through local and live verification, documentation and the skill catalog. Captured before the final state commit; use the timestamps as the source of truth."
   },
   "model": {
@@ -21,14 +21,14 @@
     "provider": "opencode-go"
   },
   "usage": {
-    "inputTokens": 352417,
-    "outputTokens": 191161,
-    "reasoningTokens": 82237,
-    "cacheReadTokens": 40856064,
+    "inputTokens": 358092,
+    "outputTokens": 194019,
+    "reasoningTokens": 83370,
+    "cacheReadTokens": 43957120,
     "cacheWriteTokens": 2175,
-    "totalTokens": 41484054,
+    "totalTokens": 44594776,
     "costUSD": 0.0,
-    "note": "Read from the OpenCode session database (session_v2). totalTokens is the sum of all five counters, including repeated prompt context read from cache; cache reads dominate the figure. costUSD is 0 on the flat-rate plan."
+    "note": "Read from the OpenCode session database (session_v2) after the live GitHub Pages suite passed. totalTokens is the sum of all five counters, including repeated prompt context read from cache; cache reads dominate the figure. costUSD is 0 on the flat-rate plan."
   },
   "artifacts": {
     "sourceFiles": [
@@ -72,7 +72,7 @@
       "16/16 curriculum and core tests: data shape, math helpers, parser, mastery, adaptive queue, quiz flow",
       "17/17 repository and static tests: pinned Three.js, IDs, hidden guard, docs links, metadata, no tracking",
       "47/47 local headless Chrome checks: eight scenes, controls, practice, persistence, FRQ, mobile, deep link, self-test",
-      "47/47 live GitHub Pages checks against https://somphol.github.io/calculus-explorer-3d/",
+      "47/47 live GitHub Pages checks against https://somphol.github.io/calculus-explorer-3d/ (re-run after the final content push)",
       "27/27 in-page self-test, including WebGL triangles and duplicate-ID checks",
       "Zero console errors and zero uncaught exceptions",
       "Scaffold copied from the published skill catalog, then 33 Node tests and 47 browser checks passed"

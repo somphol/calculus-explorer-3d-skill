@@ -13,13 +13,13 @@ Measured from `session_v2` in `~/.local/share/opencode/opencode.db` at capture, 
 
 | Counter | Value |
 | --- | --- |
-| Wall-clock elapsed | 57m 6s |
-| Input tokens | 352,417 |
-| Output tokens | 191,161 |
-| Reasoning tokens | 82,237 |
-| Cache-read tokens | 40,856,064 |
+| Wall-clock elapsed | 59m 28s |
+| Input tokens | 358,092 |
+| Output tokens | 194,019 |
+| Reasoning tokens | 83,370 |
+| Cache-read tokens | 43,957,120 |
 | Cache-write tokens | 2,175 |
-| Total (sum of five counters) | 41,484,054 |
+| Total (sum of five counters) | 44,594,776 |
 | Provider cost | $0 (flat-rate plan) |
 
 Cache reads dominate the total; they are repeated prompt context, not unique content. The full record
